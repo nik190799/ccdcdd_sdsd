@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat App Mockup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 8px; background: #23272f; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px;}
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 overflow-hidden">
+
+  <div class="flex h-screen">
+
+    <!-- Sidebar / Left Panel -->
+    <aside class="w-80 bg-gray-800 border-r border-gray-700 flex flex-col">
+      <!-- User Profile Section -->
+      <div class="flex items-center gap-4 p-6 border-b border-gray-700">
+        <img src="https://placehold.co/60x60/64748b/fff?text=JD" alt="" class="rounded-full w-14 h-14 object-cover">
+        <div>
+          <h2 class="text-xl font-bold">Jane Doe</h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+            <span class="text-xs text-gray-400">Online</span>
+          </div>
+        </div>
+      </div>
+      <!-- Status + Notifications -->
+      <div class="flex justify-between items-center px-6 py-3 border-b border-gray-700">
+        <div class="flex items-center gap-2">
+          <span class="text-gray-400 text-sm">Status:</span>
+          <span class="bg-green-600 px-2 py-0.5 rounded text-xs font-semibold">Available</span>
+        </div>
+        <div>
+          <button class="relative">
+            <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11c0-3.07-1.641-5.64-5-6.32V4a1 1 0 10-2 0v.68C6.641 5.36 5 7.929 5 11v3.159c0 .538-.214 1.055-.595 1.436L3 17h5m2 0v1a3 3 0 006 0v-1m-6 0h6"></path>
+            </svg>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-xs rounded-full flex items-center justify-center">3</span>
+          </button>
+        </div>
+      </div>
+      <!-- Chat/Contact List -->
+      <div class="flex-1 overflow-y-auto">
+        <h3 class="px-6 py-3 text-gray-400 uppercase tracking-wide text-xs">Chats</h3>
+        <ul>
+          <!-- Chat 1 -->
+          <li class="bg-gray-900 rounded-lg mx-4 mb-2 shadow flex cursor-pointer p-3 items-center hover:bg-gray-700 transition">
+            <img src="https://placehold.co/40x40/0ea5e9/fff?text=AL" class="rounded-full w-10 h-10" alt="">
+            <div class="ml-3 flex-1">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">Alice Lane</span>
+                <span class="text-xs text-gray-400">4:23 PM</span>
+              </div>
+              <span class="text-gray-400 text-sm truncate">Hey, are you coming to the meeting today?</span>
+            </div>
+            <span class="ml-2 inline-flex items-center justify-center w-5 h-5 text-xs bg-blue-600 text-white rounded-full">2</span>
+          </li>
+          <!-- Chat 2 -->
+          <li class="bg-gray-800 rounded-lg mx-4 mb-2 shadow flex cursor-pointer p-3 items-center hover:bg-gray-700 transition">
+            <img src="https://placehold.co/40x40/fbbf24/fff?text=MO" class="rounded-full w-10 h-10" alt="">
+            <div class="ml-3 flex-1">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">Mohammed Umar</span>
+                <span class="text-xs text-gray-400">3:10 PM</span>
+              </div>
+              <span class="text-gray-400 text-sm truncate">Sure, I can help you with the design files.</span>
+            </div>
+          </li>
+          <!-- Chat 3 -->
+          <li class="bg-gray-800 rounded-lg mx-4 mb-2 shadow flex cursor-pointer p-3 items-center hover:bg-gray-700 transition">
+            <img src="https://placehold.co/40x40/34d399/fff?text=CK" class="rounded-full w-10 h-10" alt="">
+            <div class="ml-3 flex-1">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">Charles Kim</span>
+                <span class="text-xs text-gray-400">2:45 PM</span>
+              </div>
+              <span class="text-gray-400 text-sm truncate">Thanks! See you tomorrow morning. 👍</span>
+            </div>
+          </li>
+          <!-- Chat 4 -->
+          <li class="bg-gray-800 rounded-lg mx-4 mb-2 shadow flex cursor-pointer p-3 items-center hover:bg-gray-700 transition">
+            <img src="https://placehold.co/40x40/ef4444/fff?text=SA" class="rounded-full w-10 h-10" alt="">
+            <div class="ml-3 flex-1">
+              <div class="flex justify-between items-center">
+                <span class="font-semibold">Sarah Ade</span>
+                <span class="text-xs text-gray-400">12:11 PM</span>
+              </div>
+              <span class="text-gray-400 text-sm truncate">Let me know if you need anything else.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Contacts (at the bottom)-->
+      <div class="border-t border-gray-700 p-4">
+        <h3 class="text-gray-400 uppercase tracking-wide text-xs mb-2">Contacts</h3>
+        <div class="flex -space-x-2">
+          <img src="https://placehold.co/32x32/2563eb/fff?text=JH" class="rounded-full border-2 border-gray-900 hover:z-10" alt="">
+          <img src="https://placehold.co/32x32/d946ef/fff?text=EM" class="rounded-full border-2 border-gray-900 hover:z-10" alt="">
+          <img src="https://placehold.co/32x32/f59e42/fff?text=RL" class="rounded-full border-2 border-gray-900 hover:z-10" alt="">
+          <img src="https://placehold.co/32x32/16a34a/fff?text=PK" class="rounded-full border-2 border-gray-900 hover:z-10" alt="">
+          <span class="flex items-center justify-center bg-gray-700 rounded-full w-8 h-8 text-sm text-gray-200">+5</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Chat Main Area -->
+    <section class="flex-1 flex flex-col h-full min-w-0">
+      <!-- Chat Header -->
+      <div class="flex items-center justify-between px-8 py-4 border-b border-gray-700 bg-gray-800">
+        <div class="flex items-center gap-4">
+          <img src="https://placehold.co/48x48/0ea5e9/fff?text=AL" class="w-12 h-12 rounded-full" alt="">
+          <div>
+            <h2 class="text-lg font-semibold">Alice Lane</h2>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+              <span class="text-xs text-gray-300">Online</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="flex flex-col items-end">
+            <span class="text-xs text-gray-400 mb-1">Last seen</span>
+            <span class="text-xs text-gray-300">1 min ago</span>
+          </div>
+          <button class="text-gray-300 hover:text-blue-500 transition">
+            <svg fill="none" class="w-7 h-7" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5.121 17.804A13.937 13.937 0 0112 15c2.995 0 5.79 1.095 7.879 2.804A2 2 0 0116.675 21H7.325a2 2 0 01-2.204-3.196z"></path>
+              <path d="M15 10a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Chat Window -->
+      <div class="flex-1 overflow-y-auto px-8 py-6 bg-gray-900" style="background-image:url('https://placehold.co/1000x600/181825/1e293b');background-blend-mode:multiply;">
+        <!-- Message: Others -->
+        <div class="flex items-start mb-6">
+          <img src="https://placehold.co/36x36/0ea5e9/fff?text=AL" class="w-9 h-9 rounded-full mr-3" alt="">
+          <div>
+            <div class="bg-gray-800 text-gray-200 rounded-xl rounded-tl-none px-5 py-3 shadow mb-1 max-w-md">
+              Hi Jane! Do you have the latest report ready?
+            </div>
+            <span class="text-xs text-gray-400 ml-2">4:20 PM</span>
+          </div>
+        </div>
+        <!-- Message: Me -->
+        <div class="flex items-end mb-6 justify-end">
+          <div>
+            <div class="bg-blue-600 text-white rounded-xl rounded-tr-none px-5 py-3 shadow max-w-md">
+              Hi Alice! Yes, let me send it to you in a minute.
+            </div>
+            <span class="text-xs text-gray-400 mr-2 flex justify-end">4:21 PM</span>
+          </div>
+          <img src="https://placehold.co/36x36/64748b/fff?text=JD" class="w-9 h-9 rounded-full ml-3" alt="">
+        </div>
+        <!-- Message: Others -->
+        <div class="flex items-start mb-6">
+          <img src="https://placehold.co/36x36/0ea5e9/fff?text=AL" class="w-9 h-9 rounded-full mr-3" alt="">
+          <div>
+            <div class="bg-gray-800 text-gray-200 rounded-xl rounded-tl-none px-5 py-3 shadow mb-1 max-w-md">
+              Thank you so much! Also, are you free this evening for a quick call?
+            </div>
+            <span class="text-xs text-gray-400 ml-2">4:22 PM</span>
+          </div>
+        </div>
+        <!-- Message: Me -->
+        <div class="flex items-end mb-8 justify-end">
+          <div>
+            <div class="bg-blue-600 text-white rounded-xl rounded-tr-none px-5 py-3 shadow max-w-md">
+              Sure, after 6 PM works for me!
+            </div>
+            <span class="text-xs text-gray-400 mr-2 flex justify-end">4:23 PM</span>
+          </div>
+          <img src="https://placehold.co/36x36/64748b/fff?text=JD" class="w-9 h-9 rounded-full ml-3" alt="">
+        </div>
+        <!-- Typing indicator example -->
+        <div class="flex items-start mb-4">
+          <img src="https://placehold.co/36x36/0ea5e9/fff?text=AL" class="w-9 h-9 rounded-full mr-3" alt="">
+          <div class="bg-gray-800 rounded-xl rounded-tl-none px-5 py-2 flex items-center gap-1 min-w-[56px]">
+            <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
+            <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></span>
+            <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Input Box -->
+      <form class="px-8 py-5 bg-gray-800 border-t border-gray-700">
+        <div class="flex items-center gap-4">
+          <button type="button" class="text-gray-400 hover:text-blue-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24">
+              <path d="M15.172 7l-6.586 6.586A2 2 0 0010.828 17h2a2 2 0 001.414-.586l6.586-6.586A2 2 0 0019 6.828l-2-2a2 2 0 00-2.828 0z"></path>
+              <path d="M7 17v1a2 2 0 002 2h6a2 2 0 002-2v-1"></path>
+            </svg>
+          </button>
+          <input type="text" placeholder="Type a message..."
+            class="w-full p-3 rounded-full bg-gray-900 border border-gray-700 focus:border-blue-500 text-gray-200 outline-none transition ring-0">
+          <button type="submit"
+            class="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-full shadow text-white font-semibold transition">Send</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+</body>
+</html>
