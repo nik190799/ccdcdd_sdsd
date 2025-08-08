@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const CalorieDashboardScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -69,128 +70,215 @@ class _CalorieDashboardScreenState extends State<CalorieDashboardScreen> {
         title: const Text('Calorie Dashboard'),
         backgroundColor: Colors.green.shade700,
         foregroundColor: Colors.white,
+        elevation: 1,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(18, 18, 18, 70),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Previous
-                IconButton(
-                  icon: const Icon(Icons.chevron_left),
-                  onPressed: _selectedDayIndex < _dates.length - 1
-                      ? () {
-                          setState(() {
-                            _selectedDayIndex++;
-                          });
-                        }
-                      : null,
-                ),
-                Text(
-                  _selectedDayIndex == 0
-                      ? "Today"
-                      : "${_dates[_selectedDayIndex].month.toString().padLeft(2, '0')}-${_dates[_selectedDayIndex].day.toString().padLeft(2, '0')}-${_dates[_selectedDayIndex].year}",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                // Next
-                IconButton(
-                  icon: const Icon(Icons.chevron_right),
-                  onPressed: _selectedDayIndex > 0
-                      ? () {
-                          setState(() {
-                            _selectedDayIndex--;
-                          });
-                        }
-                      : null,
-                ),
-              ],
-            ),
-            const SizedBox(height: 22),
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Calorie Intake",
-                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17)),
-                    const SizedBox(height: 11),
-                    Row(
-                      children: [
-                        Text(
-                          "$total",
-                          style: const TextStyle(
-                              fontSize: 38, fontWeight: FontWeight.w900, color: Colors.green),
-                        ),
-                        const Text(
-                          " / $calorieGoal kcal",
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                    // Previous
+                    IconButton(
+                      icon: const Icon(Icons.chevron_left),
+                      onPressed: _selectedDayIndex < _dates.length - 1
+                          ? () {
+                              setState(() {
+                                _selectedDayIndex++;
+                              });
+                            }
+                          : null,
                     ),
-                    const SizedBox(height: 13),
-                    LinearProgressIndicator(
-                      value: progress,
-                      backgroundColor: Colors.green.shade100,
-                      color: Colors.green,
-                      minHeight: 11,
-                      borderRadius: BorderRadius.circular(7),
+                    Text(
+                      _selectedDayIndex == 0
+                          ? "Today"
+                          : "${_dates[_selectedDayIndex].month.toString().padLeft(2, '0')}-${_dates[_selectedDayIndex].day.toString().padLeft(2, '0')}-${_dates[_selectedDayIndex].year}",
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    // Next
+                    IconButton(
+                      icon: const Icon(Icons.chevron_right),
+                      onPressed: _selectedDayIndex > 0
+                          ? () {
+                              setState(() {
+                                _selectedDayIndex--;
+                              });
+                            }
+                          : null,
                     ),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 22),
-            const Text(
-              "Meal Breakdown",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black87),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.separated(
-                itemCount: meals.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 10),
-                itemBuilder: (context, idx) {
-                  final mealName = meals.keys.elementAt(idx);
-                  final cals = meals[mealName]!;
-                  return Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
-                    color: Colors.green[50],
-                    elevation: 1,
-                    child: ListTile(
-                      title: Text(
-                        mealName,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16, color: Colors.green),
-                      ),
-                      subtitle: Text(
-                        "$cals kcal",
-                        style: const TextStyle(
-                            color: Colors.black87, fontWeight: FontWeight.w500),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.add_circle, color: Colors.green),
-                        onPressed: () {
-                          // Placeholder: Could open add-food dialog
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Add Food to $mealName (demo only)")));
-                        },
-                      ),
+                const SizedBox(height: 18),
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  color: Colors.green[50],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Total Calories",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 15, color: Colors.green),
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Text(
+                                  "$total",
+                                  style: const TextStyle(
+                                      fontSize: 37,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.green),
+                                ),
+                                Text(
+                                  " / $calorieGoal kcal",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.green[800]),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              CircularProgressIndicator(
+                                value: progress,
+                                backgroundColor: Colors.green.shade100,
+                                color: Colors.green,
+                                strokeWidth: 8,
+                              ),
+                              Center(
+                                child: Text(
+                                  "${(progress * 100).toInt()}%",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold, color: Colors.green),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                },
+                  ),
+                ),
+                const SizedBox(height: 24),
+                const Text(
+                  "Meal Breakdown",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.black87),
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: meals.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    itemBuilder: (context, idx) {
+                      final mealName = meals.keys.elementAt(idx);
+                      final cals = meals[mealName]!;
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                        color: Colors.white,
+                        elevation: 1,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green.shade100,
+                            child: Icon(
+                              mealName == "Breakfast"
+                                  ? Icons.free_breakfast
+                                  : mealName == "Lunch"
+                                      ? Icons.lunch_dining
+                                      : mealName == "Dinner"
+                                          ? Icons.dinner_dining
+                                          : Icons.icecream,
+                              color: Colors.green,
+                            ),
+                          ),
+                          title: Text(
+                            mealName,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Colors.green,
+                            ),
+                          ),
+                          subtitle: Text(
+                            "$cals kcal",
+                            style: const TextStyle(
+                                color: Colors.black87, fontWeight: FontWeight.w500),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.add_circle, color: Colors.green),
+                            onPressed: () {
+                              // Placeholder: Could open add-food dialog
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Add Food to $mealName (demo only)")));
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              color: Colors.green.shade800,
+              height: 56,
+              padding: const EdgeInsets.symmetric(horizontal: 22),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.local_fire_department, color: Colors.white, size: 30),
+                      const SizedBox(width: 10),
+                      Text(
+                        "$total kcal",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 21,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    "Goal: $calorieGoal",
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 19,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
